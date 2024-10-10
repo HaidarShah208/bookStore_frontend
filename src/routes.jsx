@@ -14,16 +14,26 @@ import { authActions } from "./store/auth/auth";
 import Favourites from "./pages/profile/Favourites";
 import OrderHistory from "./pages/profile/OrderHistory";
 import Setting from "./pages/profile/Setting";
+import ProtectedRoute from "./components/protectedRoute";
+import AllOrder from "./pages/allOrders/AllOrder";
+import AddBook from "./pages/addBook/AddBook";
+import UpdateBook from './pages/updateBook/UpdateBook';
 
 function RoutesFile() {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector((state) => state.auth.login);
   useEffect(() => {
     const token = Cookies.get("token");
+    const role = Cookies.get("role");
     if (token) {
       dispatch(authActions.login());
+       if (role) {
+        dispatch(authActions.changeRole(role)); // Restore role from cookies
+      }
     }
   }, []);
+
+  const role = useSelector((state) => state.auth.role);
+
   return (
     <div>
       <Routes>
@@ -31,17 +41,25 @@ function RoutesFile() {
         <Route path="/allbooks" element={<AllBooks />} />
         <Route path="/about" element={<Aboutus />} />
         <Route path="/signup" element={<Signup />} />
-        <Route
-          path="/login"
-          element={isLoggedIn ? <Navigate to="/" /> : <Login />}
-        />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/profile" element={<Profile />}>
-        <Route index element={<Favourites/>}/>
-        <Route path="/profile/orderHistory" element={<OrderHistory/>}/>
-        <Route path="/profile/setting" element={<Setting/>}/>
+        <Route path="/login" element={<Login />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/profile" element={<Profile />}>
+            {role === "user" ? (
+              <Route index element={<Favourites />} />
+            ) : (
+              <Route index element={<AllOrder />} />
+            )}
+            <Route path="orderHistory" element={<OrderHistory />} />
+            {role === 'admin' && 
+            <Route path="addBook" element={<AddBook />} />
+            }
+            <Route path="setting" element={<Setting />} />
+          </Route>
         </Route>
         <Route path="/getBook/:id" element={<DetailPage />} />
+        <Route path="/updateBook/:id" element={<UpdateBook />} />
+        <Route path="*" element={<h2 className="h-screen text-center items-center flex justify-center">Not Found</h2>} />
       </Routes>
     </div>
   );

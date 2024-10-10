@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { GrLanguage } from "react-icons/gr";
 import { FaHeart } from "react-icons/fa6";
 import { FaEdit, FaShoppingCart } from "react-icons/fa";
@@ -8,9 +7,11 @@ import { useSelector } from "react-redux";
 import { MdOutlineDelete } from "react-icons/md";
 import toast from "react-hot-toast";
 import instance from "../../utils/instance";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 function DetailPage() {
   const { id } = useParams();
+  const navigation = useNavigate();
   const [books, setBooks] = useState("");
   const [loading, setLoading] = useState(true);
 const isLoggedIn=useSelector((state)=>state.auth.isLoggedIn)
@@ -21,6 +22,7 @@ const role=useSelector((state)=>state.auth.role)
         const response = await axios.get(
           `https://book-store-backend-gamma-neon.vercel.app/api/v1/getBook/${id}`
         );
+        console.log(response.data.book)
         setBooks(response.data.book);
       } catch (error) {
         console.error("Error fetching books:", error.response.message);
@@ -54,11 +56,24 @@ const role=useSelector((state)=>state.auth.role)
   }
 
 
+  const DeleteBook=async()=>{
+    try{
+    const response = await instance.delete(`/deleteBook/${id}`);
+    console.log(response);
+    toast.success('Book Removed')
+    navigation('/allbooks')
+    }catch(error){
+      toast.error(error.response?.data?.error || "Something went wrong");
+      console.error("Error fetching books:", error);
+    }
+  }
+
+
 
   return (
     <>
       {loading ? (
-        <div className="flex h-screen bg-zinc-900 justify-center items-center">
+        <div className="flex min-h-screen h-auto bg-zinc-900 justify-center items-center">
           <span className="loader"></span>
         </div>
       ) : (
@@ -77,8 +92,10 @@ const role=useSelector((state)=>state.auth.role)
             }
             {isLoggedIn && role=== 'admin' && 
             <div className="flex flex-col ">
+              <Link to={`/updateBook/${id}`}>
               <div className="bg-white text-2xl  cursor-pointer rounded-full p-2"><FaEdit/> </div>
-              <div className="bg-white text-2xl rounded-full cursor-pointer p-2 mt-4"><MdOutlineDelete/> </div>
+              </Link>
+              <div className="bg-white text-2xl rounded-full cursor-pointer p-2 mt-4" onClick={DeleteBook}><MdOutlineDelete/> </div>
             </div>
             }
           </div>
@@ -87,7 +104,7 @@ const role=useSelector((state)=>state.auth.role)
               {books.title}
             </div>
             <div className="mt-1 text-zinc-400  ">by {books.author}</div>
-            <div className="mt-4 text-zinc-500 text-xl text-justify ">by {books.desc}</div>
+            <div className="mt-4 text-zinc-500 text-xl text-justify "> {books.description}</div>
             <div className="flex items-center justify-start text-zinc-400 text-xl mt-6">
               <GrLanguage className="me-2 pt-0.5" /> {books.language}
             </div>

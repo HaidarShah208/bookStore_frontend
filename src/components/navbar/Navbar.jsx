@@ -24,6 +24,10 @@ const Navbar = () => {
       title: "Profile",
       link: "/profile",
     },
+    {
+      title: "Admin Profile",
+      link: "/profile",
+    },
   ];
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => {
@@ -31,7 +35,19 @@ const Navbar = () => {
   };
 
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const role=useSelector((state) => state.auth.role)
   if (!isLoggedIn) {
+    {
+      links.splice(3, 3);
+    }
+  }
+
+  if(isLoggedIn && role === 'user') {
+    {
+      links.splice(5, 1);
+    }
+  }
+  if(isLoggedIn && role === 'admin') {
     {
       links.splice(3, 2);
     }
@@ -47,8 +63,8 @@ const Navbar = () => {
         <div className="nav-links-heaven block md:flex gap-4 items-center">
           <div className="hidden md:flex gap-4">
             {links.map((link, index) => (
-              <>
-                {link.title === "Profile" ? (
+              <div key={index}>
+                {link.title === "Profile" || link.title === "Admin Profile" ? (
                   <Link
                     to={link.link}
                     key={index}
@@ -65,7 +81,7 @@ const Navbar = () => {
                     {link.title}
                   </Link>
                 )}
-              </>
+              </div>
             ))}
           </div>
           {!isLoggedIn && (

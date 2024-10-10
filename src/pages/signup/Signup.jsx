@@ -30,7 +30,7 @@ const Signup = () => {
         }
       );
       toast.success("Sign up successful!");
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       toast.error(error.response.data.error);
       console.error("Error during sign-up:", error);

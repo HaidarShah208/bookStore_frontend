@@ -3,6 +3,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import { Outlet } from "react-router-dom";
 import toast from "react-hot-toast";
 import instance from "../../utils/instance";
+import MobileNav from "../../components/mobileNav/MobileNav";
 
 function Profile() {
 
@@ -27,18 +28,19 @@ function Profile() {
  
 
   return (
-    <div className="bg-zinc-900 px-4  flex flex-col md:flex-row min:h-full h-screen py-8 gap-2 text-white">
+    <div className="bg-zinc-900 px-4  flex flex-col md:flex-row h-full  py-8 gap-2 text-white">
       {!loading ? (
         <>
-          <div className="w-full md:w-1/6">
+          <div className="w-full md:w-1/6 ">
             <Sidebar data={profile} />
+            <MobileNav/>
           </div>
-          <div className="w-full md:w-5/6">
+          <div className="w-full md:w-5/6 min-h-screen h-auto">
             <Outlet />
           </div>
         </>
       ) : (
-        <div className="flex w-full justify-center items-center">
+        <div className="flex w-full h-screen justify-center items-center">
           <span className="loader"></span>
         </div>
       )}

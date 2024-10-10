@@ -29,6 +29,7 @@ const Login = () => {
       toast.success("Login successful!");
       dispatch(authActions.login())
       dispatch(authActions.changeRole(response.data.role))
+     Cookies.set("role",response.data.role,{ expires: 1 })
       navigate("/");
     } catch (error) {
       toast.error(error.response.data.message);
