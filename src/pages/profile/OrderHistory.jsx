@@ -51,22 +51,22 @@ function OrderHistory() {
                   </div>
                   <div className="w-full rounded mt-4 py-2 px-4 flex gap-3 font-semibold text-white border border-e">
                     <div className="w-[3%]">
-                      <h1 className="text-center">Sr.</h1>
+                      <h1 className="text-center text-sm md:text-base">Sr.</h1>
                     </div>
                     <div className="w-[22%]">
-                      <h1 className="">Books</h1>
+                      <h1 className="text-sm md:text-base">Books</h1>
                     </div>
                     <div className="w-[45%]">
-                      <h1 className="">Description.</h1>
+                      <h1 className="text-sm md:text-base">Description.</h1>
                     </div>
                     <div className="w-[9%]">
-                      <h1 className="">Price</h1>
+                      <h1 className="text-sm md:text-base">Price</h1>
                     </div>
                     <div className="w-[16%]">
-                      <h1 className="">Status</h1>
+                      <h1 className="text-sm md:text-base">Status</h1>
                     </div>
                     <div className="w-none md:w-[5%] hidden md:block">
-                      <h1 className="">Mode</h1>
+                      <h1 className="text-sm md:text-base">Mode</h1>
                     </div>
                   </div>
                 </div>
@@ -81,27 +81,27 @@ function OrderHistory() {
                       <h1 className="text-center">{i + 1}</h1>
                     </div>
                     <div className="w-[22%]">
-                      <Link to={`/getBook/${item.book._id}`} className="hover:text-blue-700">{item.book.title}</Link>
+                      <Link to={`/getBook/${item.book._id}`} className="hover:text-blue-700 text-sm md:text-base">{item.book.title}</Link>
                     </div>
                     <div className="w-[45%]">
-                      <h1 className="">{item.book.desc.slice(0,50)}...</h1>
+                      <h1 className="text-sm md:text-base">{item.book.description.slice(0,15)}...</h1>
                     </div>
                     <div className="w-[9%]">
-                      <h1 className="">Rs. {item.book.price}</h1>
+                      <h1 className="text-sm md:text-base">Rs. {item.book.price}</h1>
                     </div>
                     <div className="w-[16%]">
-                      <h1 className="">
+                      <h1 className="text-sm md:text-base">
                         {item.status === 'place order'?
                           (
                          <div className="text-green-500">{item.status}</div>)
                         :item.status === 'cancelled'?
                         <div className="text-red-600">{item.status}</div>
-                        :(item.status)
+                        : <div className="text-sky-700">{item.status}</div>
                         }
                         
                       </h1>
                     </div>
-                    <div className="w-none md:w-[5%] hidden md:block">
+                    <div className="w-none md:w-[5%] hidden md:block text-sm md:text-base">
                       <h1 className="">COD</h1>
                     </div>
                   </div>

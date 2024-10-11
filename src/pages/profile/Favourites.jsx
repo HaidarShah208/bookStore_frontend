@@ -35,7 +35,7 @@ const handleRemoveBook = (bookId) => {
         {books.length === 0 ? (
         <div className="h-screen">
         <div className="flex justify-center h-[100%] text-center flex-col">
-          <h1 className="text-5xl lg:text-6xl font-semibold text-zinc-400">
+          <h1 className="text-2xl md:text-6xl font-semibold text-zinc-400">
         No Favourites Yet
           </h1>
           <img src={save} alt="/" className="lg:h-[50vh] object-contain " />
