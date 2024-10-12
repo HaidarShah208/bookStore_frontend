@@ -1,6 +1,5 @@
 import React from "react";
 import BooksImg from "../../assets/books.png";
-import Carousel from "../../components/swiper/Swiper";
 import FAQAccordion from "../../components/swiper/Swiper";
 
 function Aboutus() {

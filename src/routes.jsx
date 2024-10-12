@@ -6,8 +6,6 @@ import Login from "./pages/login/Login";
 import AllBooks from "./pages/allBooks/AllBooks";
 import Cart from "./pages/cart/Cart";
 import Profile from "./pages/profile/Profile";
-import Aboutus from "./pages/about/aboutus";
-import DetailPage from "./pages/detailPage.jsx/DetailPage";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
 import { authActions } from "./store/auth/auth";
@@ -18,7 +16,8 @@ import ProtectedRoute from "./components/protectedRoute";
 import AllOrder from "./pages/allOrders/AllOrder";
 import AddBook from "./pages/addBook/AddBook";
 import UpdateBook from './pages/updateBook/UpdateBook';
-
+import Aboutus from './pages/about/Aboutus'
+import DetailPage from "./pages/detailPage/DetailPage";
 function RoutesFile() {
   const dispatch = useDispatch();
   useEffect(() => {
