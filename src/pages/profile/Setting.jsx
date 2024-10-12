@@ -7,6 +7,7 @@ function Setting() {
     username: "",
     email: "",
     address: "",
+    awatar:''
   });
   // const [user, setUser] = useState("");
   const [isEditing, setIsEditing] = useState(false);
@@ -60,12 +61,12 @@ function Setting() {
     ) : (
     <div
       id="container"
-      className="p-20 sm:p-16 md:p-20 lg:p-24 xl:p-20 w-auto flex flex-col md:flex-row px-4 sm:px-8 md:px-24 lg:px-24 xl:px-24 relative"
+      className="p-20 justify-center items-center sm:p-16 md:p-20 lg:p-24 xl:p-20 w-auto flex flex-col md:flex-row px-4 sm:px-8 md:px-24 lg:px-24 xl:px-24 relative"
     >
-      <div className="group rounded-2xl me-10  hover:saturate-100 saturate-0 transition-[filter] relative w-[248px] h-auto bg-[#FAEDE4] font-['Robot_Flex'] border-b-2 border-b-[#F04E29]">
+      <div className="group me-0  md:me-10  hover:saturate-100 saturate-0 transition-[filter] relative w-[248px] md:h-[40vh] lg:h-[50vh] bg-[#FAEDE4] font-['Robot_Flex'] border-b-2 border-b-[#F04E29]">
         <img
           className="group-hover:rounded-br-[100px] rounded-br-[0px] transition-[border-radius]"
-          src="https://data.artofproblemsolving.com/images/people/rlemon309x309.png"
+          src={user.awatar}
         />
         <svg
           className="group-hover:opacity-100 opacity-0 transition-opacity absolute right-[10px] bottom-[10px]"
@@ -82,7 +83,7 @@ function Setting() {
         </svg>
       </div>
       <div className="w-full md:w-[60%] lg:w-[50%] space-y-6">
-        <h1 className="text-white font-bold text-3xl">User Information</h1>
+        <h1 className="text-white font-bold text-3xl md:pt-0 pt-10">User Information</h1>
 
         <div className="space-y-4">
               <div>

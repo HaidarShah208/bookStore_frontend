@@ -66,7 +66,7 @@ function Cart() {
  
   return (
     <>
-      <div className="bg-zinc-900 px-12   min-h-[80vh] py-8">
+      <div className="bg-zinc-900 md:px-12 px-7   min-h-[80vh] py-8">
         
         {loading ? (
           <div className="flex  bg-zinc-900 h-screen justify-center items-center">
@@ -101,24 +101,24 @@ function Cart() {
                         <h1 className="text-zinc-100 text-2xl font-semibold items-start mt-2 md:mt-0">
                           {item.title}
                         </h1>
-                        <p className="text-normal mt-2 text-zinc-300 hidden lg:block">
-                          {item.description.slice(0, 100)}...
-                        </p>
-                        <p className="text-normal mt-2 text-zinc-300 hidden lg:hidden md:block">
+                        
+                        <p className="lg:text-normal   text-xs mt-2 text-zinc-300 hidden   md:block">
                           {item.description.slice(0, 100)}...
                         </p>
                       </div>
                       <div className="flex mt-4 w-full md:w-auto items-center justify-between">
-                        <h1 className="text-zinc-100 text-3xl flex font-semibold">
+                        <h1 className="text-zinc-100 lg:text-3xl text-xl text- flex font-semibold">
                           Rs. {item.price}
                         </h1>
                       </div>
-                      <button
-                        className="bg-red-100 text-red-700 border border-red-700 rounded p-2 ms-12"
+                    <div className="justify-end md:me-0 pt-4 md:pt-0 me-64">
+                    <button
+                        className="bg-red-100  text-red-700 border border-red-700 rounded p-2 ms-12"
                         onClick={() => handleDelete(item._id)}
                       >
                         <AiFillDelete />
                       </button>
+                    </div>
                     </div>
                   );
                 })}

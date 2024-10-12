@@ -20,7 +20,7 @@ const CheckoutForm = ({allBooks,total,orderPlaced,loading}) => {
   const finalTotal = allBooks.length > 0 ? total + shippingFee : total;
 
   return (
-    <div className="bg-gradient-to-b bg-zinc-700 to-white rounded-3xl shadow-lg w-[375px] h-auto overflow-auto p-8">
+    <div className="bg-gradient-to-b bg-zinc-700 to-white rounded-3xl shadow-lg w-[375px] h-auto overflow-auto p-4 md:p-8">
       <form className="grid gap-8" onSubmit={orderPlaced}>
         <div>
           <h2 className="text-2xl font-bold text-white mb-2">Address</h2>

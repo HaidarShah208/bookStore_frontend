@@ -32,7 +32,7 @@ function OrderHistory() {
           {order.length === 0 ? (
             <div className="h-screen">
               <div className="flex justify-center h-[100%] text-center flex-col">
-                <h1 className="text-5xl lg:text-6xl font-semibold text-zinc-400">
+                <h1 className="md:text-5xl text-3xl lg:text-6xl font-semibold text-zinc-400">
                   No Order Yet
                 </h1>
                 <img

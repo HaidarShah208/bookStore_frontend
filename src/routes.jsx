@@ -24,10 +24,14 @@ function RoutesFile() {
   useEffect(() => {
     const token = Cookies.get("token");
     const role = Cookies.get("role");
+    const avatar = Cookies.get("avatar"); 
     if (token) {
       dispatch(authActions.login());
        if (role) {
         dispatch(authActions.changeRole(role)); // Restore role from cookies
+      }
+      if (avatar) {
+        dispatch(authActions.updateAvatar(avatar)); // Restore avatar from cookies
       }
     }
   }, []);

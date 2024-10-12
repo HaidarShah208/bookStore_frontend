@@ -38,7 +38,7 @@ const handleRemoveBook = (bookId) => {
           <h1 className="text-2xl md:text-6xl font-semibold text-zinc-400">
         No Favourites Yet
           </h1>
-          <img src={save} alt="/" className="lg:h-[50vh] object-contain " />
+          <img src={save} alt="/" className="lg:h-[30vh] h-auto object-contain " />
       </div>
       </div>
         ) : (

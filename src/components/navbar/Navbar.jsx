@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaGripLines } from "react-icons/fa6";
 import { useSelector } from "react-redux";
+import bookIcon from '../../assets/bookIcon.png'
 const Navbar = () => {
   const links = [
     {
@@ -55,9 +56,10 @@ const Navbar = () => {
   return (
     <>
       <nav className="z-50 flex relative  bg-zinc-800 text-white px-8 py-4 justify-between items-center">
-        <div>
+        <div className="flex flex-row">
+          <img src={bookIcon} alt="book"  className="w-10 "/>
           <Link to={"/"}>
-            <h1 className="text-2xl font-semibold">Book Glaxciy</h1>
+            <h1 className="text-2xl text-center ps-3 font-semibold">Book Glaxciy</h1>
           </Link>
         </div>
         <div className="nav-links-heaven block md:flex gap-4 items-center">
